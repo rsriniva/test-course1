@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-course1
+  title: Test Course 1
+  description: This is a test course
+  annotations:
+    github.com/project-slug: rsriniva/test-course1
+  tags:
+    - quick-course
+    - antora
+    - training
+    - hol
+  links:
+    - url: https://192.168.49.2.nip.io/#https://github.com/rsriniva/test-course1
+      title: Eclipse Che IDE Workspace
+      icon: externalLink
+    - url: https://rsriniva.github.io/test-course1
+      title: GitHub Pages Rendered wesite
+      icon: docs
+spec:
+  type: website
+  owner: Devconf
+  lifecycle: experimental

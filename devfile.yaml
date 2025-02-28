@@ -1,0 +1,49 @@
+schemaVersion: 2.1.0
+metadata:
+  name: test-course1
+  displayName: Test Course 1
+  description: This is a test course
+  icon: https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg
+  tags:
+    - Node.js
+    - Antora
+    - ubi8
+  projectType: Node.js
+  language: JavaScript
+  version: 2.1.1
+components:
+  - name: runtime
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      args: ['tail', '-f', '/dev/null']
+      memoryLimit: 2048Mi
+      mountSources: true
+      endpoints:
+        - name: http-node
+          exposure: public
+          targetPort: 8080
+commands:
+  - id: 0-install
+    exec:
+      component: runtime
+      commandLine: npm install
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: build
+        isDefault: true
+  - id: 1-watch
+    exec:
+      component: runtime
+      commandLine: npm run watch:adoc
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: run
+        isDefault: true
+  - id: 2-serve
+    exec:
+      component: runtime
+      commandLine: npm run serve
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: run
+        isDefault: true
